@@ -1,0 +1,24 @@
+name: wf-ci
+on:
+  pull_request:
+    branches:
+      - develop
+jobs:
+  linting-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check th file 
+        uses: actions/checkout@v4
+      - name: Lint html and css files
+        run: |
+          npx htmlhint "*/.html"
+          npx stylelint "*/.css"
+  build-job:
+    needs: linting-job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the file 
+        uses: actions/checkout@v4
+      - name: Build Website
+        run: |
+          npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./"
