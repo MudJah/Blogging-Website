@@ -23,7 +23,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment: "development-envr"
+    environment: "development-environment"
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Build Artifacts on Github pages
